@@ -74,7 +74,7 @@ RUN echo 'export USER42="$USER_"' >> /root/.zshrc ;\
 
 # set variable git
 RUN git config --global user.email "$EMAIL_" &&\
-	git config --global user.name "$USER_r"
+	git config --global user.name "$USER_"
 
 # prepare le shell
 CMD ["zsh"]
