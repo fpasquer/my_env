@@ -16,15 +16,17 @@ RUN apk add --no-cache make &&\
 	apk add --no-cache wget
 
 # install gdb
-RUN mkdir gdb-buid ;\
-	cd gdb-buid ;\
-	wget https://ftp.gnu.org/gnu/gdb/gdb-7.12.1.tar.xz ;\
-	tar -xvf gdb-7.12.1.tar.xz ;\
-	cd gdb-7.12.1 ;\
-	./configure --prefix=/usr ;\
-	make ;\
-	make -C gdb install ;\
-	cd / ;\
+RUN apk add --no-cache python &&\
+	apk add --no-cache python-dev &&\
+	mkdir gdb-buid &&\
+	cd gdb-buid &&\
+	wget https://ftp.gnu.org/gnu/gdb/gdb-7.12.1.tar.xz &&\
+	tar -xvf gdb-7.12.1.tar.xz &&\
+	cd gdb-7.12.1 &&\
+	./configure --with-python --prefix=/usr &&\
+	make &&\
+	make -C gdb install &&\
+	cd / &&\
 	rm -rf gdb-buid
 
 # install vim
@@ -34,7 +36,6 @@ RUN apk add --no-cache git ;\
 	apk add --no-cache libxpm-dev ;\
 	apk add --no-cache libxt-dev ;\
 	apk add --no-cache ncurses-dev ;\
-	apk add --no-cache python;\
 	apk add --no-cache python-dev ;\
 	git clone https://github.com/vim/vim.git ;\
 	cd vim/src ;\
