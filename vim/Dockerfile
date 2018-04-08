@@ -18,13 +18,13 @@ RUN apk add --no-cache vim \
 	git
 
 #execute install sublime-vim
-RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh || true
-RUN wget http://install.sublivim.com -O - | sh || true
+RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true &&\
+	wget http://install.sublivim.com -O - | sh || true
 
 # install header 42
 RUN wget https://raw.githubusercontent.com/QuentinPerez/42-toolkit/master/srcs/vim/header/make_header.vim  &&\
 	mkdir -p ~/.vim/bundle/42header/plugin &&\
 	mv make_header.vim ~/.vim/bundle/42header/plugin/
 
-WORKDIR "/root"
-ENTRYPOINT ["/usr/bin/vim"]
+WORKDIR "/root/"
+CMD ["/usr/bin/vim"]
